@@ -6,23 +6,9 @@ export const getAnimesQuery = (title: string) => `
         title {
           romaji
         }
-        bannerImage
         coverImage {
-          extraLarge
-          color
+          medium
         }
-        episodes
-        description
-        startDate {
-          month
-          year
-        }
-        endDate {
-          month
-          year
-        }
-        format
-        isAdult
       }
     }
   }
