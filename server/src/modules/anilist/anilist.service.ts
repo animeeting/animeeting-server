@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { anilistApi } from 'src/apis/anilist.api';
-import { getAnimesQuery } from 'src/apis/graphql/animes.query';
+import { getAnimeQuery, getAnimesQuery } from 'src/apis/graphql/animes.query';
 
 @Injectable()
 export class AnilistService {
@@ -12,5 +12,19 @@ export class AnilistService {
     const animes = response.data.data.Page.media;
 
     return animes;
+  }
+
+  async getAnime(id: number) {
+    try {
+      const response = await anilistApi.post('/', {
+        query: getAnimeQuery(id),
+      });
+
+      const anime = response.data.data.Media;
+
+      return anime;
+    } catch (error) {
+      throw new HttpException('Anime not found!', HttpStatus.NOT_FOUND);
+    }
   }
 }

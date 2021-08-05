@@ -13,3 +13,49 @@ export const getAnimesQuery = (title: string) => `
     }
   }
 `;
+
+export const getAnimeQuery = (id: number) => `
+  query AnimeMedia{
+    Media(id: ${id}){
+      id
+      title{
+        romaji
+      }
+      status
+      description
+      format
+      startDate{
+        day
+        month
+        year
+      }
+      endDate{
+        day
+        month
+        year
+      }
+      season
+      episodes
+      duration
+      trailer{
+        id
+        site
+        thumbnail
+      }
+      coverImage{
+        medium
+        color
+      }
+      bannerImage
+      genres
+      averageScore
+      studios{
+        nodes{
+          id
+          name
+          isAnimationStudio
+        }
+      }
+    }
+  }
+`;
