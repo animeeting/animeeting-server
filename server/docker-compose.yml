@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: animeeting_server
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
