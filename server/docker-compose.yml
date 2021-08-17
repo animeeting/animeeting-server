@@ -1,6 +1,19 @@
 version: '3.8'
 
 services:
+  animeeting_postgres:
+    image: postgres
+    container_name: animeeting_postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=animeeting
+      - POSTGRES_PASSWORD=AnimeetingATIVO
+      - POSTGRES_DB=animeeting
+    volumes:
+      - pgdata:/data/postgres
+
   app:
     build: .
     container_name: animeeting_server
@@ -9,3 +22,7 @@ services:
       - 3000:3000
     volumes:
       - .:/usr/app
+
+volumes:
+  pgdata:
+    driver: local
