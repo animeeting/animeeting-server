@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { ICreateUserDTO } from './dto/create-user.dto';
 import { User } from './entities/user.model';
 import { IUsersRepository } from './interface/user.repository.interface';
@@ -17,6 +17,21 @@ export class UsersService {
     email,
     password,
   }: ICreateUserDTO): Promise<User> {
+    const emailExists = await this.usersRepository.findByEmail(email);
+
+    if (emailExists) {
+      throw new HttpException('E-mail already exists!', HttpStatus.BAD_REQUEST);
+    }
+
+    const nicknameExists = await this.usersRepository.findByNickname(nickname);
+
+    if (nicknameExists) {
+      throw new HttpException(
+        'Nickname already exists!',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const passwordHash = await hash(password, 8);
 
     const user = await this.usersRepository.createUser({

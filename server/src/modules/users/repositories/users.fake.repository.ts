@@ -32,4 +32,12 @@ export class UsersFakeRepository implements IUsersRepository {
 
     return user;
   }
+
+  async findByEmail(email: string): Promise<User> {
+    return this.users.find((user) => user.email === email);
+  }
+
+  async findByNickname(nickname: string): Promise<User> {
+    return this.users.find((user) => user.nickname === nickname);
+  }
 }

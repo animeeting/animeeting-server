@@ -37,4 +37,12 @@ export class UsersRepository implements IUsersRepository {
 
     return createdUser;
   }
+
+  async findByEmail(email: string): Promise<User> {
+    return await this.usersRepository.findOne({ where: { email } });
+  }
+
+  async findByNickname(nickname: string): Promise<User> {
+    return await this.usersRepository.findOne({ where: { nickname } });
+  }
 }
