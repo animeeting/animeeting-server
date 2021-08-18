@@ -1,19 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { ICreateUserDTO } from '../dto/create-user.dto';
 import { User } from '../entities/user.model';
 import { IUsersRepository } from '../interface/user.repository.interface';
 
 @Injectable()
-export class UsersRepository implements IUsersRepository {
-  constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
-  ) {}
+export class UsersFakeRepository implements IUsersRepository {
+  private users: User[] = [];
 
   async findAll(): Promise<User[]> {
-    return await this.usersRepository.find();
+    return this.users;
   }
 
   async createUser({
@@ -29,12 +24,12 @@ export class UsersRepository implements IUsersRepository {
       nickname,
       email,
       password,
+      created_at: new Date(),
+      updated_at: new Date(),
     });
 
-    const createdUser = this.usersRepository.create(user);
+    this.users.push(user);
 
-    await this.usersRepository.save(createdUser);
-
-    return createdUser;
+    return user;
   }
 }

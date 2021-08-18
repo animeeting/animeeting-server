@@ -1,0 +1,13 @@
+{
+  "type": "postgres",
+  "host": "animeeting_postgres",
+  "port": 5432,
+  "username": "animeeting",
+  "password": "AnimeetingATIVO",
+  "database": "animeeting",
+  "entities": ["dist/modules/**/entities/*.model{.ts,.js}"],
+  "synchronize": false,
+  "cli": {
+    "migrationsDir": "./src/infra/database/migrations"
+  }
+}
