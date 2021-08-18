@@ -6,8 +6,9 @@
   "password": "AnimeetingATIVO",
   "database": "animeeting",
   "entities": ["dist/modules/**/entities/*.model{.ts,.js}"],
+  "migrations": ["dist/infra/database/migrations/*{.ts,.js}"],
   "synchronize": false,
   "cli": {
-    "migrationsDir": "./src/infra/database/migrations"
+    "migrationsDir": "src/infra/database/migrations"
   }
 }
