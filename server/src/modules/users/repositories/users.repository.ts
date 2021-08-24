@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ICreateUserDTO } from '../dto/create-user.dto';
 import { User } from '../entities/user.model';
-import { IUsersRepository } from '../interface/user.repository.interface';
+import { IUsersRepository } from '../interfaces/user.repository.interface';
 
 @Injectable()
 export class UsersRepository implements IUsersRepository {
