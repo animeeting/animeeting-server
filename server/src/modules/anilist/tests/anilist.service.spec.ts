@@ -4,7 +4,7 @@ import {
   anime,
   animeResponse,
   animesResponse,
-} from '../../../utils/mocks/anilist';
+} from '../../../shared/utils/mocks/anilist';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 const anilistService = new AnilistService();

@@ -3,8 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from './infra/database/config/ormconfig';
 import { AnilistModule } from './modules/anilist/anilist.module';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 @Module({
-  imports: [TypeOrmModule.forRoot(ormConfig), AnilistModule, UsersModule],
+  imports: [
+    TypeOrmModule.forRoot(ormConfig),
+    AnilistModule,
+    UsersModule,
+    AuthModule,
+  ],
   controllers: [],
   providers: [],
 })

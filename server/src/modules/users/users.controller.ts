@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ICreateUserDTO } from './dto/create-user.dto';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/shared/guards/jwt.guard';
+import { ICreateUserDTO } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -20,6 +21,7 @@ export class UsersController {
     return user;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async listAllUsers() {
     return this.usersService.listAllUsers();
