@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx --no-install commitlint --edit ""
+exec < /dev/tty && git cz --hook || true
+
