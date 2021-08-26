@@ -82,7 +82,7 @@ describe('Users Service', () => {
 
     const [listedUser, listedUser2] = await usersService.listAllUsers();
 
-    expect(listedUser).toBe(user2);
-    expect(listedUser2).toBe(user);
+    expect(listedUser).toBe(user);
+    expect(listedUser2).toBe(user2);
   });
 });
