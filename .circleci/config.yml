@@ -13,7 +13,7 @@ jobs:
           pkg-manager: yarn
       - run:
           name: Run tests
-          command: npm test
+          command: yarn test
 
 workflows:
   sample:
