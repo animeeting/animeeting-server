@@ -14,7 +14,7 @@ export const getAnimesQuery = (title: string) => `
   }
 `;
 
-export const getAnimeQuery = (id: number) => `
+export const  getAnimeQuery = (id: number) => `
   query AnimeMedia{
     Media(id: ${id}){
       id
