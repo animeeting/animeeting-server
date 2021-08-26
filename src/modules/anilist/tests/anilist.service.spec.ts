@@ -5,8 +5,7 @@ import {
   animeResponse,
   animesResponse,
 } from '../../../shared/utils/mocks/anilist';
-import { HttpStatus } from '@nestjs/common';
-import { User } from 'src/modules/users/entities/user.model';
+import { HttpException, HttpStatus } from '@nestjs/common';
 
 const anilistService = new AnilistService();
 
@@ -39,7 +38,7 @@ describe('Anilist Service', () => {
     try {
       await anilistService.getAnime(99);
     } catch (error) {
-      expect(error).toBeInstanceOf(User);
+      expect(error).toBeInstanceOf(HttpException);
       expect(error.message).toBe('Anime not found!');
       expect(error.status).toBe(HttpStatus.NOT_FOUND);
     }
