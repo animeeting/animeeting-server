@@ -1,12 +1,4 @@
-import {
-  Body,
-  ClassSerializerInterceptor,
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/shared/guards/jwt.guard';
 import { ICreateUserDTO } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
@@ -15,7 +7,6 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @UseInterceptors(ClassSerializerInterceptor)
   @Post()
   async createUser(
     @Body() { name, email, nickname, password }: ICreateUserDTO,
@@ -31,7 +22,6 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   async listAllUsers() {
     return this.usersService.listAllUsers();
