@@ -41,8 +41,6 @@ export class UsersService {
       password: passwordHash,
     });
 
-    delete user.password;
-
     return user;
   }
 
