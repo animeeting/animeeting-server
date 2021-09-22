@@ -1,4 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
+
 import { AnilistService } from './anilist.service';
 
 @Controller('anilist')

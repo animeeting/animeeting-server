@@ -1,8 +1,9 @@
-import { UsersService } from '../users.service';
-import { UsersFakeRepository } from '../repositories/users.fake.repository';
-import { IUsersRepository } from '../interfaces/user.repository.interface';
-import { createUserTest } from '../../../shared/utils/mocks/users';
 import { HttpException, HttpStatus } from '@nestjs/common';
+
+import { createUserTest } from '../../../shared/utils/mocks/users';
+import { IUsersRepository } from '../interfaces/user.repository.interface';
+import { UsersFakeRepository } from '../repositories/users.fake.repository';
+import { UsersService } from '../users.service';
 
 let usersService: UsersService;
 let usersRepository: IUsersRepository;

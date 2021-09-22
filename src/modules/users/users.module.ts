@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { Module } from '@nestjs/common';
 
 import { User } from './entities/user.model';
 import { UsersRepository } from './repositories/users.repository';

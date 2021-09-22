@@ -1,6 +1,6 @@
 import { Entity, PrimaryKey, Property, Unique } from '@mikro-orm/core';
-import { v4 as uuid } from 'uuid';
 import { Exclude } from 'class-transformer';
+import { v4 as uuid } from 'uuid';
 
 @Entity({ tableName: 'users' })
 export class User {

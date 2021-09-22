@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+
 import { anilistApi } from '../../apis/anilist.api';
 import { getAnimeQuery, getAnimesQuery } from '../../apis/graphql/animes.query';
 
