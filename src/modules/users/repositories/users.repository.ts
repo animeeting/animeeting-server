@@ -1,6 +1,6 @@
+import { EntityRepository } from '@mikro-orm/core';
+import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { ICreateUserDTO } from '../dtos/create-user.dto';
 import { User } from '../entities/user.model';
 import { IUsersRepository } from '../interfaces/user.repository.interface';
@@ -9,11 +9,11 @@ import { IUsersRepository } from '../interfaces/user.repository.interface';
 export class UsersRepository implements IUsersRepository {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private usersRepository: EntityRepository<User>,
   ) {}
 
   async findAll(): Promise<User[]> {
-    return await this.usersRepository.find();
+    return await this.usersRepository.findAll();
   }
 
   async createUser({
@@ -31,18 +31,16 @@ export class UsersRepository implements IUsersRepository {
       password,
     });
 
-    const createdUser = this.usersRepository.create(user);
+    await this.usersRepository.persistAndFlush(user);
 
-    await this.usersRepository.save(createdUser);
-
-    return createdUser;
+    return user;
   }
 
   async findByEmail(email: string): Promise<User> {
-    return await this.usersRepository.findOne({ where: { email } });
+    return await this.usersRepository.findOne({ email });
   }
 
   async findByNickname(nickname: string): Promise<User> {
-    return await this.usersRepository.findOne({ where: { nickname } });
+    return await this.usersRepository.findOne({ nickname });
   }
 }

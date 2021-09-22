@@ -1,18 +1,16 @@
 import { config } from 'dotenv';
 
-const { NODE_ENV } = process.env;
-
-const envFile = `.env.${NODE_ENV}`;
-
-config({ path: envFile });
+config({ path: '.env' });
 
 const REQUIRED_ENV_VARS = [
   'DATABASE_TYPE',
   'POSTGRES_HOST',
+  'POSTGRES_HOST_CLI',
   'POSTGRES_PORT',
   'POSTGRES_USERNAME',
   'POSTGRES_PASSWORD',
   'POSTGRES_DATABASE',
+  'ORM_LOG_ENABLED',
 ];
 
 REQUIRED_ENV_VARS.forEach((envVar) => {
@@ -27,10 +25,10 @@ export const port = process.env.PORT || 3000;
 export const postgres = {
   type: process.env.DATABASE_TYPE,
   host: process.env.POSTGRES_HOST,
+  hostCli: process.env.POSTGRES_HOST_CLI,
   port: Number(process.env.POSTGRES_PORT),
-  username: process.env.POSTGRES_USERNAME,
+  user: process.env.POSTGRES_USERNAME,
   password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DATABASE,
-  synchronize: process.env.SYNC_DB === 'true' || false,
-  logging: process.env.ORM_LOG_ENABLED === 'true' || false,
+  dbName: process.env.POSTGRES_DATABASE,
+  debug: process.env.ORM_LOG_ENABLED === 'true' || false,
 };
