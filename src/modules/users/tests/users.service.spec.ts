@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { createUserTest } from 'src/shared/utils/mocks/users';
 
-import { createUserTest } from '../../../shared/utils/mocks/users';
 import { IUsersRepository } from '../interfaces/user.repository.interface';
 import { UsersFakeRepository } from '../repositories/users.fake.repository';
 import { UsersService } from '../users.service';

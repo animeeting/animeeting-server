@@ -1,6 +1,5 @@
 import { MikroOrmModuleOptions } from '@mikro-orm/nestjs';
-
-import { postgres } from '../../config';
+import { postgres } from 'src/config';
 
 const { type, host, hostCli, port, user, password, dbName, debug } = postgres;
 
