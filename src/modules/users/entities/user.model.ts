@@ -1,40 +1,30 @@
+import { Entity, PrimaryKey, Property, Unique } from '@mikro-orm/core';
 import { v4 as uuid } from 'uuid';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-@Entity('users')
+@Entity({ tableName: 'users' })
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryKey({ columnType: 'uuid' })
+  id: string = uuid();
 
-  @Column()
-  name: string;
+  @Property()
+  name!: string;
 
-  @Column()
-  nickname: string;
+  @Property()
+  @Unique()
+  nickname!: string;
 
-  @Column()
-  email: string;
+  @Property()
+  @Unique()
+  email!: string;
 
   @Exclude()
-  @Column()
-  password: string;
+  @Property()
+  password!: string;
 
-  @CreateDateColumn()
-  created_at: Date;
+  @Property({ columnType: 'timestamp' })
+  created_at = new Date();
 
-  @UpdateDateColumn()
-  updated_at: Date;
-
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  }
+  @Property({ columnType: 'timestamp', onUpdate: () => new Date() })
+  updated_at = new Date();
 }
