@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { jwtConfig } from '../../../config/auth';
+import { jwt } from '../../../config';
 import { createUserTest } from '../../../shared/utils/mocks/users';
 import { User } from '../../users/entities/user.model';
 import { IUsersRepository } from '../../users/interfaces/user.repository.interface';
@@ -18,8 +18,8 @@ describe('Auth Service', () => {
   beforeEach(async () => {
     usersRepository = new UsersFakeRepository();
     jwtService = new JwtService({
-      secret: jwtConfig.secret,
-      signOptions: { expiresIn: jwtConfig.expireIn },
+      secret: jwt.secret,
+      signOptions: { expiresIn: jwt.expiresIn },
     });
     authService = new AuthService(usersRepository, jwtService);
 
