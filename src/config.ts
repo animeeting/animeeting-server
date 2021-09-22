@@ -11,6 +11,8 @@ const REQUIRED_ENV_VARS = [
   'POSTGRES_PASSWORD',
   'POSTGRES_DATABASE',
   'ORM_LOG_ENABLED',
+  'JWT_SECRET',
+  'JWT_EXPIRES_IN',
 ];
 
 REQUIRED_ENV_VARS.forEach((envVar) => {
@@ -31,4 +33,9 @@ export const postgres = {
   password: process.env.POSTGRES_PASSWORD,
   dbName: process.env.POSTGRES_DATABASE,
   debug: process.env.ORM_LOG_ENABLED === 'true' || false,
+};
+
+export const jwt = {
+  secret: process.env.JWT_SECRET,
+  expiresIn: process.env.JWT_EXPIRES_IN,
 };
