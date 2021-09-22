@@ -6,7 +6,7 @@ import { AuthService } from '../auth.service';
 import { IUsersRepository } from '../../users/interfaces/user.repository.interface';
 import { UsersFakeRepository } from '../../users/repositories/users.fake.repository';
 import { createUserTest } from '../../../shared/utils/mocks/users';
-import { jwtConfig } from '../../../config/auth';
+import { jwt } from '../../../config';
 
 let authService: AuthService;
 let usersRepository: IUsersRepository;
@@ -18,8 +18,8 @@ describe('Auth Service', () => {
   beforeEach(async () => {
     usersRepository = new UsersFakeRepository();
     jwtService = new JwtService({
-      secret: jwtConfig.secret,
-      signOptions: { expiresIn: jwtConfig.expireIn },
+      secret: jwt.secret,
+      signOptions: { expiresIn: jwt.expiresIn },
     });
     authService = new AuthService(usersRepository, jwtService);
 
