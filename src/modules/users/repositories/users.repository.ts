@@ -1,6 +1,7 @@
 import { EntityRepository } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable } from '@nestjs/common';
+
 import { ICreateUserDTO } from '../dtos/create-user.dto';
 import { User } from '../entities/user.model';
 import { IUsersRepository } from '../interfaces/user.repository.interface';

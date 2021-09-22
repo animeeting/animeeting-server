@@ -2,8 +2,10 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 import { isEmail } from 'class-validator';
+
 import { User } from '../users/entities/user.model';
 import { IUsersRepository } from '../users/interfaces/user.repository.interface';
+
 import { IAuthUserDTO } from './dtos/auth-user.interface';
 import { IJwtPayload } from './interfaces/jwt-payload.interface';
 
