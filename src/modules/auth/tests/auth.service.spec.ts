@@ -1,11 +1,11 @@
 import { HttpStatus } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { jwt } from 'src/config';
+import { User } from 'src/modules/users/entities/user.model';
+import { IUsersRepository } from 'src/modules/users/interfaces/user.repository.interface';
+import { UsersFakeRepository } from 'src/modules/users/repositories/users.fake.repository';
+import { createUserTest } from 'src/shared/utils/mocks/users';
 
-import { jwt } from '../../../config';
-import { createUserTest } from '../../../shared/utils/mocks/users';
-import { User } from '../../users/entities/user.model';
-import { IUsersRepository } from '../../users/interfaces/user.repository.interface';
-import { UsersFakeRepository } from '../../users/repositories/users.fake.repository';
 import { AuthService } from '../auth.service';
 
 let authService: AuthService;
