@@ -50,4 +50,8 @@ export class UsersService {
   async listAllUsers() {
     return this.usersRepository.findAll();
   }
+
+  async showUserProfile(id: string): Promise<User> {
+    return this.usersRepository.findById(id);
+  }
 }

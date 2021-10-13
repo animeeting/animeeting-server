@@ -6,4 +6,5 @@ export interface IUsersRepository {
   findAll(): Promise<User[]>;
   findByEmail(email: string): Promise<User>;
   findByNickname(nickname: string): Promise<User>;
+  findById(id: string): Promise<User>;
 }
