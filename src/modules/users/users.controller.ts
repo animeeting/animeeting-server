@@ -61,7 +61,7 @@ export class UsersController {
 
     return updatedUser;
   }
-  
+
   @UseGuards(JwtAuthGuard)
   @Get('/profile')
   async showUserProfile(@Request() request: IRequestUser) {
