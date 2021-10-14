@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-
-import { anilistApi } from '../../../apis/anilist.api';
+import { anilistApi } from 'src/apis/anilist.api';
 import {
   anime,
   animeResponse,
   animesResponse,
-} from '../../../shared/utils/mocks/anilist';
+} from 'src/shared/utils/mocks/anilist';
+
 import { AnilistService } from '../anilist.service';
 
 const anilistService = new AnilistService();

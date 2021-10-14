@@ -112,4 +112,8 @@ export class UsersService {
 
     return updatedUser;
   }
+  
+  async showUserProfile(id: string): Promise<User> {
+    return this.usersRepository.findById(id);
+  }
 }

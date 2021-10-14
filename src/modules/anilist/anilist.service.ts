@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-
-import { anilistApi } from '../../apis/anilist.api';
-import { getAnimeQuery, getAnimesQuery } from '../../apis/graphql/animes.query';
+import { anilistApi } from 'src/apis/anilist.api';
+import { getAnimeQuery, getAnimesQuery } from 'src/apis/graphql/animes.query';
 
 @Injectable()
 export class AnilistService {

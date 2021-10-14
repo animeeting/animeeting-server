@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { jwt } from 'src/config';
+import { JwtStrategy } from 'src/shared/strategies/jwt.strategy';
 
-import { jwt } from '../../config';
-import { JwtStrategy } from '../../shared/strategies/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 
 import { AuthController } from './auth.controller';

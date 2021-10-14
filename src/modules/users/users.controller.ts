@@ -3,6 +3,7 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Get,
+  Request,
   Post,
   Put,
   UseGuards,
@@ -15,6 +16,7 @@ import { IRequestUser } from 'src/shared/utils/interfaces';
 import { ICreateUserDTO } from './dtos/create-user.dto';
 import { IUpdateProfileDTO } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
+
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UsersController {
@@ -58,5 +60,11 @@ export class UsersController {
     });
 
     return updatedUser;
+  }
+  
+  @UseGuards(JwtAuthGuard)
+  @Get('/profile')
+  async showUserProfile(@Request() request: IRequestUser) {
+    return this.usersService.showUserProfile(request.user.id);
   }
 }
