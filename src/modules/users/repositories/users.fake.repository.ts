@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { ICreateUserDTO } from '../dtos/create-user.dto';
+import { IUpdateProfileDTO } from '../dtos/update-user.dto';
 import { User } from '../entities/user.model';
 import { IUsersRepository } from '../interfaces/user.repository.interface';
 
@@ -44,5 +45,29 @@ export class UsersFakeRepository implements IUsersRepository {
 
   async findById(id: string): Promise<User> {
     return this.users.find((user) => user.id === id);
+  }
+
+  async updateUser({
+    id,
+    name,
+    nickname,
+    email,
+    password,
+  }: IUpdateProfileDTO): Promise<User> {
+    const user = this.users.find((user) => user.id === id);
+
+    Object.assign(user, {
+      name,
+      nickname,
+      email,
+      password: password ? password : user.password,
+      updated_at: new Date(),
+    });
+
+    const findIndex = this.users.findIndex((findUser) => findUser.id === id);
+
+    this.users[findIndex] = user;
+
+    return this.users[findIndex];
   }
 }

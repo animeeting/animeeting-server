@@ -3,6 +3,7 @@ import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable } from '@nestjs/common';
 
 import { ICreateUserDTO } from '../dtos/create-user.dto';
+import { IUpdateProfileDTO } from '../dtos/update-user.dto';
 import { User } from '../entities/user.model';
 import { IUsersRepository } from '../interfaces/user.repository.interface';
 
@@ -36,6 +37,7 @@ export class UsersRepository implements IUsersRepository {
 
     return user;
   }
+  string;
 
   async findByEmail(email: string): Promise<User> {
     return await this.usersRepository.findOne({ email });
@@ -47,5 +49,15 @@ export class UsersRepository implements IUsersRepository {
 
   async findById(id: string): Promise<User> {
     return await this.usersRepository.findOne({ id });
+  }
+
+  async updateUser(data: IUpdateProfileDTO): Promise<User> {
+    const user = await this.usersRepository.findOne({ id: data.id });
+
+    const updatedUser = this.usersRepository.assign(user, data);
+
+    await this.usersRepository.persistAndFlush(updatedUser);
+
+    return updatedUser;
   }
 }
