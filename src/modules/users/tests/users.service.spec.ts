@@ -86,4 +86,16 @@ describe('Users Service', () => {
     expect(listedUser).toBe(user);
     expect(listedUser2).toBe(user2);
   });
+
+  it('should be able to show user profile', async () => {
+    const user = await createUserTest({
+      usersRepository,
+      email: 'user@test.com',
+      nickname: 'test',
+    });
+
+    const profile = await usersService.showUserProfile(user.id);
+
+    expect(profile).toBe(user);
+  });
 });
