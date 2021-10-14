@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { createUserTest } from 'src/shared/utils/mocks/users';
 
 import { createUserTest } from '../../../shared/utils/mocks/users';
 import { IUpdateProfileDTO } from '../dtos/update-user.dto';
@@ -95,11 +94,11 @@ describe('Users Service', () => {
       email: 'user@test.com',
       nickname: 'test',
     });
-  
+
     const profile = await usersService.showUserProfile(user.id);
 
     expect(profile).toBe(user);
-  }
+  });
 
   it('should be able to update user', async () => {
     const user = await createUserTest({
@@ -107,7 +106,7 @@ describe('Users Service', () => {
       email: 'user@test.com',
       nickname: 'test',
     });
-  
+
     const updateUser: IUpdateProfileDTO = {
       id: user.id,
       name: 'New User Name',
