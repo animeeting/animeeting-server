@@ -114,6 +114,12 @@ export class UsersService {
   }
 
   async showUserProfile(id: string): Promise<User> {
+    const idExists = await this.usersRepository.findById(id);
+
+    if (!idExists) {
+      throw new HttpException('User does not exist!', HttpStatus.BAD_REQUEST);
+    }
+
     return this.usersRepository.findById(id);
   }
 }
